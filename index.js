@@ -1,5 +1,4 @@
 const process = require("process");
-const fs = require("fs");
 const { ReadText, WriteText } = require("./streams");
 
 const config = process.argv;

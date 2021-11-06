@@ -8,15 +8,14 @@ class ReadText extends Readable {
     //   this._index = 0;
   }
 
-  _read() {
+  async _read () {
     console.log("ReadText");
-    this.push("ReadText");
-    // this = fs.readFile("./input.txt", async function (err, dataFromCopyFile) {// как почитать по частям и добавить к this???
-    //   // this.push(dataFromCopyFile);
-    //   console.log("ReadText");
-    //   console.log(this);
-    //   console.log(dataFromCopyFile);
-    // });
+    this = await fs.readFile("./input.txt", async function (err, dataFromCopyFile) {// как почитать по частям и добавить к this???
+      // this.push(dataFromCopyFile);
+      console.log("ReadText");
+      console.log(dataFromCopyFile);
+    });
+    
     //   this._index += 1;
 
     //   if (this._index > this._max) {
