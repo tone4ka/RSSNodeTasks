@@ -2,29 +2,37 @@ const { Readable, Writable, Transform } = require("stream");
 const fs = require("fs");
 
 class ReadText extends Readable {
-  constructor(opt) {
-    super(opt);
-    //   this._max = 1000;
-    //   this._index = 0;
+  constructor(filename) {
+    super();
+    this.filename = filename;
+    this.fd = null;
   }
-
-  async _read () {
-    console.log("ReadText");
-    this = await fs.readFile("./input.txt", async function (err, dataFromCopyFile) {// как почитать по частям и добавить к this???
-      // this.push(dataFromCopyFile);
-      console.log("ReadText");
-      console.log(dataFromCopyFile);
+  _construct(callback) {
+    fs.open(this.filename, (err, fd) => {
+      if (err) {
+        callback(err);
+      } else {
+        this.fd = fd;
+        callback();
+      }
     });
-    
-    //   this._index += 1;
-
-    //   if (this._index > this._max) {
-    //     this.push(null);
-    //   } else {
-    //     const buf = Buffer.from(`${this._index}`, 'utf8');
-
-    //     console.log(`Added: ${this._index}. Could be added? `, this.push(buf));
-    //   }
+  }
+  _read(n) {
+    const buf = Buffer.alloc(n);
+    fs.read(this.fd, buf, 0, n, null, (err, bytesRead) => {
+      if (err) {
+        this.destroy(err);
+      } else {
+        this.push(bytesRead > 0 ? buf.slice(0, bytesRead) : null);
+      }
+    });
+  }
+  _destroy(err, callback) {
+    if (this.fd) {
+      fs.close(this.fd, (er) => callback(er || err));
+    } else {
+      callback(err);
+    }
   }
 }
 
