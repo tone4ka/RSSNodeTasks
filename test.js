@@ -1,6 +1,6 @@
 const { Readable, Writable, Transform } = require('stream');
 const {stdin, stdout} = require('process');
-stdin.pipe(stdout);
+stdin.pipe(transform).pipe(stdout);
 class ReadText extends Readable {
     constructor(opt) {
       super(opt);

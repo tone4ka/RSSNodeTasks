@@ -7,7 +7,7 @@ function incorrectCryptingConfig(cryptingConfig) {
         if (item[0] === 'R' && item.length === 2 && (item[1] === '1' || item[1] === '0')) {
             return false;
         }
-        if (item[0] === 'A' && item.split('').every((i) => i === 'A')) {
+        if (item === 'A') {
             return false;
         }
         return true;
