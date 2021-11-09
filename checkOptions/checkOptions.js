@@ -9,13 +9,6 @@ function checkOptions(options) {
     let cryptingConfig;
     let inputFile;
     let outputFile;
-    options = options.map((item) => {
-        return (
-            item === '--input' ? '-i' :
-            item === '--output' ? '-o' :
-            item === '--config' ? '-c' : item
-        )
-    });
 
     if(incorrectOptionsLength(options)) return false;
     if(incorrectFlagsPositions(options)) return false;

@@ -1,14 +1,15 @@
 const process = require("process");
-const { ReadText, WriteText } = require("./streams");
 const checkOptions = require('./checkOptions/checkOptions');
 const ConfigurationError = require('./errors/ConfigurationError');
 const errorHandler = require('./errors/errorHandler');
+const startEncryption = require('./encription/startEncryption');
+const formatFlagsNames = require('./checkOptions/formatFlagsNames');
 
 try{
-    const config = process.argv.slice(2);
+    const config = formatFlagsNames(process.argv.slice(2));
     const isCorrectOptions = checkOptions(config);
     if(!isCorrectOptions) throw new ConfigurationError('Invalid configuration parameters');
-console.log(isCorrectOptions);
+    startEncryption(config);
 } catch (err) {
     errorHandler(err);
 }

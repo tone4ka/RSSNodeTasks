@@ -1,7 +1,7 @@
 class ConfigurationError extends Error {
     constructor (msg) {
         super(msg);
-        this.name = 'ConfigurationError';
+        this.name = 'Incorrect configuration entered';
         this.isCastom = true;
     }
 }
