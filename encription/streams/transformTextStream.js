@@ -1,7 +1,7 @@
 const { Transform } = require("stream");
-const addStars = require("./encriptionFunctions/addStars");
+const encrypt = require("./encriptionFunctions/encrypt");
 
-class TransformText extends Transform {
+class TransformTextStream extends Transform {
   constructor(opt) {
     super();
     this.encryptionMethod = opt[0];
@@ -13,12 +13,11 @@ class TransformText extends Transform {
     try {
       const encryptionMethod = this.encryptionMethod;
       const encriptionDirection = this.encriptionDirection;
-      const resultString = addStars(
+      const resultString = encrypt(
         chunk,
         encryptionMethod,
-        encriptionDirection
+        +encriptionDirection
       );
-
       callback(null, resultString);
     } catch (err) {
       callback(err);
@@ -26,4 +25,4 @@ class TransformText extends Transform {
   }
 }
 
-module.exports = TransformText;
+module.exports = TransformTextStream;
