@@ -4,7 +4,7 @@ const { stdout } = require("process");
 
 function writeTextStream(outputFile) {
   if (outputFile) {
-    const writableStream = fs.createWriteStream(outputFile,{ flags: "a"});
+    const writableStream = fs.createWriteStream(path.join(__dirname, '../../', outputFile),{ flags: "a"});
     return writableStream;
   }
   return stdout;

@@ -4,7 +4,7 @@ const {stdin} = require('process');
 
 function readTextStream(inputFile) {
     if(inputFile) {
-        const readableStream =  fs.createReadStream(inputFile);
+        const readableStream =  fs.createReadStream(path.join(__dirname, '../../', inputFile));
         readableStream.setEncoding('utf8');
         return readableStream;
     }
