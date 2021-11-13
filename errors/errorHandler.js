@@ -1,9 +1,9 @@
 function errorHandler(err) {
     if(err.isCastom) {
-        console.log(err.name);
+        console.error(err.name);
         process.exit(9);
     } else {
-        console.log('unknown error');
+        console.error('unknown error');
         process.exit(9);
     }
 };

@@ -4,27 +4,34 @@ const doubleOrMissingOptionsNames = require('./doubleOrMissingOptionsNames');
 const incorrectOptNames = require('./incorrectOptNames');
 const incorrectCryptingConfig = require('./incorrectCryptingConfig');
 const sameFiles = require('./sameFiles');
+const checkOutputFile = require('./checkOutputFile');
+const ConfigurationError = require('../errors/ConfigurationError');
+const errorHandler = require('../errors/errorHandler');
 
-function checkOptions(options) {
-    let cryptingConfig;
-    let inputFile;
-    let outputFile;
+async function checkOptions(options) {
+    try{
+        let cryptingConfig;
+        let inputFile;
+        let outputFile;
 
-    if(incorrectOptionsLength(options)) return false;
-    if(incorrectFlagsPositions(options)) return false;
-    if(doubleOrMissingOptionsNames(options)) return false;
-    if(incorrectOptNames(options)) return false;
+        if(incorrectOptionsLength(options)) throw new ConfigurationError();
+        if(incorrectFlagsPositions(options)) throw new ConfigurationError();
+        if(doubleOrMissingOptionsNames(options)) throw new ConfigurationError();
+        if(incorrectOptNames(options)) throw new ConfigurationError();
 
-    for (let i = 0; i < options.length; i += 1) {
-        if (options[i] === "-c") cryptingConfig = options[i + 1];
-        if (options[i] === "-i") inputFile = options[i + 1];
-        if (options[i] === "-o") outputFile = options[i + 1];
+        for (let i = 0; i < options.length; i += 1) {
+            if (options[i] === "-c") cryptingConfig = options[i + 1];
+            if (options[i] === "-i") inputFile = options[i + 1];
+            if (options[i] === "-o") outputFile = options[i + 1];
+        }
+
+        if(incorrectCryptingConfig(cryptingConfig)) throw new ConfigurationError();
+        if(sameFiles(inputFile, outputFile)) throw new ConfigurationError();
+        if(outputFile) await checkOutputFile(outputFile);
+        
+    } catch(err) {
+        errorHandler(err);
     }
-
-    if(incorrectCryptingConfig(cryptingConfig)) return false;
-    if(sameFiles(inputFile, outputFile)) return false;
-
-    return true;
 };
 
 module.exports = checkOptions;

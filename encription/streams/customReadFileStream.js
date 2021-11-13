@@ -12,7 +12,7 @@ class ReadStream extends Readable {
     fs.open(this.filename, (err, fd) => {
       if (err) {
         err.isCastom = true;
-        err.name = `file read error`;
+        err.name = `Incorrect input file name`;
         errorHandler(err);
       } else {
         this.fd = fd;
@@ -35,7 +35,7 @@ class ReadStream extends Readable {
       fs.close(this.fd, (er) => callback(er || err));
     } else {
       err.isCastom = true;
-      err.name = `file read error`;
+      err.name = `Incorrect input file name`;
       errorHandler(err);
     }
   }

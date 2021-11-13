@@ -9,7 +9,6 @@ function incorrectFlagsPositions(options) {
             return result;
         }
     }, true);
-    if(!isCorrectPos) console.log('isFlagsOnTruePosition ERROR');
     return !isCorrectPos;
 };
 

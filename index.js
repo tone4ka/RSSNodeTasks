@@ -1,15 +1,17 @@
 const process = require("process");
 const checkOptions = require('./checkOptions/checkOptions');
-const ConfigurationError = require('./errors/ConfigurationError');
 const errorHandler = require('./errors/errorHandler');
 const startEncryption = require('./encription/startEncryption');
 const formatFlagsNames = require('./checkOptions/formatFlagsNames');
 
-try{
+async function start() {
     const config = formatFlagsNames(process.argv.slice(2));
-    const isCorrectOptions = checkOptions(config);
-    if(!isCorrectOptions) throw new ConfigurationError('Invalid configuration parameters');
+    await checkOptions(config);
     startEncryption(config);
+}
+
+try{
+    start()
 } catch (err) {
     errorHandler(err);
 }

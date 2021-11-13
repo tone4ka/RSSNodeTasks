@@ -13,7 +13,6 @@ function incorrectCryptingConfig(cryptingConfig) {
         return true;
     });
     if(incorrectConfigOptions.length > 0){
-        console.log('cryptingConfigOptions ERROR');
         return true;
     };
     return false;

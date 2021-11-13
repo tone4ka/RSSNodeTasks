@@ -9,7 +9,6 @@ function incorrectOptNames(options) {
         return false;
     });
     if(incorrectOptNamesArr.length > 0){
-        console.log('CONFIGNames ERROR');
         return true;
     };
     return false;

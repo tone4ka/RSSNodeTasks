@@ -11,7 +11,7 @@ class WriteFileStream extends Writable {
     fs.open(this.filename, 'a', (err, fd) => {
       if (err) {
         err.isCastom = true;
-        err.name = `file write error`;
+        err.name = `Incorrect output file name`;
         errorHandler(err);
       } else {
         this.fd = fd;
@@ -27,7 +27,7 @@ class WriteFileStream extends Writable {
       fs.close(this.fd, (er) => callback(er || err));
     } else {
       err.isCastom = true;
-      err.name = `file write error`;
+      err.name = `Incorrect output file name`;
       errorHandler(err);
     }
   }
