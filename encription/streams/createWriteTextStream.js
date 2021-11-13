@@ -1,11 +1,10 @@
-const fs = require("fs");
 const path = require("path");
 const { stdout } = require("process");
+const WriteFileStream = require('./custonWriteFileStream')
 
 function writeTextStream(outputFile) {
   if (outputFile) {
-    const writableStream = fs.createWriteStream(path.join(__dirname, '../../', outputFile),{ flags: "a"});
-    return writableStream;
+    return new WriteFileStream(path.join(__dirname, '../../', outputFile));
   }
   return stdout;
 }

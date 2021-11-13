@@ -1,18 +1,17 @@
-const { Readable } = require('stream');
+const { Writable } = require('stream');
 const fs = require('fs');
 const errorHandler = require('../../errors/errorHandler');
 
-class ReadStream extends Readable {
+class WriteFileStream extends Writable {
   constructor(filename) {
     super();
     this.filename = filename;
-    this.fd = null;
   }
   _construct(callback) {
-    fs.open(this.filename, (err, fd) => {
+    fs.open(this.filename, 'a', (err, fd) => {
       if (err) {
         err.isCastom = true;
-        err.name = `file read error`;
+        err.name = `file write error`;
         errorHandler(err);
       } else {
         this.fd = fd;
@@ -20,25 +19,18 @@ class ReadStream extends Readable {
       }
     });
   }
-  _read(n) {
-    const buf = Buffer.alloc(n);
-    fs.read(this.fd, buf, 0, n, null, (err, bytesRead) => {
-      if (err) {
-        this.destroy(err);
-      } else {
-        this.push(bytesRead > 0 ? buf.slice(0, bytesRead) : null);
-      }
-    });
+  _write(chunk, encoding, callback) {
+    fs.write(this.fd, chunk, callback);
   }
   _destroy(err, callback) {
     if (this.fd) {
       fs.close(this.fd, (er) => callback(er || err));
     } else {
       err.isCastom = true;
-      err.name = `file read error`;
+      err.name = `file write error`;
       errorHandler(err);
     }
   }
 };
 
-module.exports = ReadStream;
+module.exports = WriteFileStream;

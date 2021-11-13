@@ -1,5 +1,5 @@
-const readTextStream = require("./streams/readTextStream");
-const writeTextStream = require("./streams/writeTextStream");
+const readTextStream = require("./streams/createReadTextStream");
+const writeTextStream = require("./streams/createWriteTextStream");
 const { pipeline } = require("stream");
 const errorHandler = require("../errors/errorHandler");
 const createTransformStreamArr = require("./streams/createTransformStreamArr");
@@ -21,7 +21,6 @@ function startEncryption(options) {
     writeTextStream(outputFile),
     (error) => {
       if (error) {
-        console.log(error);
         error.isCastom = true;
         error.name = `File not found`;
         errorHandler(error);
