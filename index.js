@@ -11,7 +11,7 @@ async function start() {
 }
 
 try{
-    start()
+    start();
 } catch (err) {
     errorHandler(err);
 }
