@@ -3,7 +3,8 @@ function errorHandler(err) {
         console.log(err.name);
         process.exit(9);
     } else {
-        throw err;
+        console.log('unknown error');
+        process.exit(9);
     }
 };
 

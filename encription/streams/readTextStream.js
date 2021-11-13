@@ -1,11 +1,10 @@
-const fs = require('fs');
 const path = require('path');
 const {stdin} = require('process');
+const ReadStream = require('./customReadFileStream');
 
 function readTextStream(inputFile) {
     if(inputFile) {
-        const readableStream =  fs.createReadStream(path.join(__dirname, '../../', inputFile));
-        readableStream.setEncoding('utf8');
+        const readableStream =  new ReadStream(path.join(__dirname, '../../', inputFile));
         return readableStream;
     }
     return stdin;
