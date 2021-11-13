@@ -1,6 +1,6 @@
 const path = require("path");
 const { stdout } = require("process");
-const WriteFileStream = require('./custonWriteFileStream')
+const WriteFileStream = require('./customWriteFileStream')
 
 function writeTextStream(outputFile) {
   if (outputFile) {
