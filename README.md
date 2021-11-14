@@ -1,6 +1,6 @@
 # RSSNodeTasks
 
-#### To run the application, enter the node index command in the command line with the necessary options described below.
+#### To run the application, enter the ***node index*** command in the command line with the necessary options described below.
 
 #### CLI tool accepts 3 options (short alias and full name):
 
