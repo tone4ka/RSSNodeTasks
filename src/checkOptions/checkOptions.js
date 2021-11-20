@@ -1,11 +1,13 @@
 const incorrectOptionsLength = require('./incorrectOptionsLength');
 const incorrectFlagsPositions = require('./incorrectFlagsPositions');
-const doubleOrMissingOptionsNames = require('./doubleOrMissingOptionsNames');
+const doubleOptionsNames = require('./doubleOptionsNames');
+const missingCOption = require('./missingCOption');
 const incorrectOptNames = require('./incorrectOptNames');
 const incorrectCryptingConfig = require('./incorrectCryptingConfig');
 const sameFiles = require('./sameFiles');
 const checkOutputFile = require('./checkOutputFile');
 const ConfigurationError = require('../errors/ConfigurationError');
+const myError = require('../errors/myError');
 const errorHandler = require('../errors/errorHandler');
 
 async function checkOptions(options) {
@@ -16,7 +18,8 @@ async function checkOptions(options) {
 
         if(incorrectOptionsLength(options)) throw new ConfigurationError();
         if(incorrectFlagsPositions(options)) throw new ConfigurationError();
-        if(doubleOrMissingOptionsNames(options)) throw new ConfigurationError();
+        if(doubleOptionsNames(options)) throw new myError('Error: You provided some argument more than once');
+        if(missingCOption(options)) throw new myError('Error: You should provide -c argument');
         if(incorrectOptNames(options)) throw new ConfigurationError();
 
         for (let i = 0; i < options.length; i += 1) {
