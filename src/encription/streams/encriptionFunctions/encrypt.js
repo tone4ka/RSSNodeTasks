@@ -14,8 +14,6 @@ function encrypt(str, encryptionMethod, encriptionDirection) {
     case "A":
       res = atbashCipher(str);
       break;
-    default:
-      break;
   }
   return res;
 }
