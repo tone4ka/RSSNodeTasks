@@ -1,7 +1,7 @@
 const fs = require('fs');
-const errorHandler = require('../errors/errorHandler');
+// const errorHandler = require('../errors/errorHandler');
 
-async function checkOutputFile(outputFile){
+async function checkOutputFile(outputFile, errorHandler){
     try {
         await fs.promises.access(outputFile, fs.constants.F_OK)
     } catch(err) {

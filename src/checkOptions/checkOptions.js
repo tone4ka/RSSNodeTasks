@@ -8,9 +8,9 @@ const sameFiles = require('./sameFiles');
 const checkOutputFile = require('./checkOutputFile');
 const ConfigurationError = require('../errors/ConfigurationError');
 const myError = require('../errors/myError');
-const errorHandler = require('../errors/errorHandler');
+// const errorHandler = require('../errors/errorHandler');
 
-async function checkOptions(options) {
+async function checkOptions(options, errorHandler) {
     try{
         let cryptingConfig;
         let inputFile;
@@ -30,7 +30,7 @@ async function checkOptions(options) {
 
         if(incorrectCryptingConfig(cryptingConfig)) throw new ConfigurationError();
         if(sameFiles(inputFile, outputFile)) throw new ConfigurationError();
-        if(outputFile) await checkOutputFile(outputFile);
+        if(outputFile) await checkOutputFile(outputFile, errorHandler);
         
     } catch(err) {
         errorHandler(err);

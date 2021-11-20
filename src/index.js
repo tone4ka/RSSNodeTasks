@@ -6,16 +6,16 @@ const formatFlagsNames = require('./checkOptions/formatFlagsNames');
 
 const args = process.argv.slice(2);
 
-async function start(arguments) {
+async function start(inputArguments, erHand) {
     try{
-        const config = formatFlagsNames(arguments);
-        await checkOptions(config);
-        startEncryption(config);
+        const config = formatFlagsNames(inputArguments);
+        await checkOptions(config, erHand);
+        startEncryption(config, erHand);
     } catch (err) {
-        errorHandler(err);
+        erHand(err);
     }
 }
 
-start(args);
+// start(args, errorHandler);
 
 module.exports = start;
