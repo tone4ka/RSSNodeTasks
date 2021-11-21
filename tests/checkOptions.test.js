@@ -24,3 +24,12 @@ test("incorrectOptNames", async () => {
     expect(err).toBeInstanceOf(ConfigurationError);
   }
 });
+test("error in checkOutputFile test", async () => {
+  const errorHandlerMock = jest.fn((err) => {
+    return err;
+  });
+    await checkOptions(
+      checkOptionsArguments.optionsWithIncorrectOutputFiles,
+      errorHandlerMock
+    ).catch((err)=>expect(err).toBeInstanceOf(myError));
+});
