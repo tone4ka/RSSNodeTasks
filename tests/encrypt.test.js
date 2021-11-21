@@ -1,8 +1,5 @@
 const encrypt = require('../src/encription/streams/encriptionFunctions/encrypt');
 
-// const { inputParametersForTests } = require("./constants");
-// const formatFlagsNames = require("../src/checkOptions/formatFlagsNames");
-
 test("correct caesar encription", () => {
   expect( encrypt('a!', 'C', 1)).toEqual('b!');
 });
