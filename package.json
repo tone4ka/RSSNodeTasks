@@ -1,0 +1,26 @@
+{
+  "name": "rssnodetasks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --verbose",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tone4ka/RSSNodeTasks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tone4ka/RSSNodeTasks/issues"
+  },
+  "homepage": "https://github.com/tone4ka/RSSNodeTasks#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
