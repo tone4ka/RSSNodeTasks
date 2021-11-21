@@ -1,6 +1,6 @@
-const { Writable } = require('stream');
-const fs = require('fs');
-const errorHandler = require('../../errors/errorHandler');
+const { Writable } = require("stream");
+const fs = require("fs");
+const errorHandler = require("../../errors/errorHandler");
 
 class WriteFileStream extends Writable {
   constructor(filename) {
@@ -8,7 +8,7 @@ class WriteFileStream extends Writable {
     this.filename = filename;
   }
   _construct(callback) {
-    fs.open(this.filename, 'a', (err, fd) => {
+    fs.open(this.filename, "a", (err, fd) => {
       if (err) {
         err.isCastom = true;
         err.name = `Incorrect output file name`;
@@ -31,6 +31,6 @@ class WriteFileStream extends Writable {
       errorHandler(err);
     }
   }
-};
+}
 
 module.exports = WriteFileStream;

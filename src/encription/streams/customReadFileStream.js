@@ -1,6 +1,6 @@
-const { Readable } = require('stream');
-const fs = require('fs');
-const errorHandler = require('../../errors/errorHandler');
+const { Readable } = require("stream");
+const fs = require("fs");
+const errorHandler = require("../../errors/errorHandler");
 
 class ReadStream extends Readable {
   constructor(filename) {
@@ -39,6 +39,6 @@ class ReadStream extends Readable {
       errorHandler(err);
     }
   }
-};
+}
 
 module.exports = ReadStream;

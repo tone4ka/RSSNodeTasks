@@ -1,8 +1,8 @@
-function incorrectOptionsLength(options){
-    if(!options.length || options.length > 6 || options.length % 2 > 0) {
+function incorrectOptionsLength(options) {
+  if (!options.length || options.length > 6 || options.length % 2 > 0) {
     return true;
-    };
-    return false;
-};
+  }
+  return false;
+}
 
 module.exports = incorrectOptionsLength;
