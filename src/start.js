@@ -8,6 +8,7 @@ async function start(inputArguments, erHand) {
         const config = formatFlagsNames(inputArguments);
         await checkOptions(config, erHand);
         startEncryption(config, erHand);
+        console.log('Encoding completed successfully');
     } catch (err) {
         erHand(err);
     }

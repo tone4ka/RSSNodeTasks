@@ -4,7 +4,7 @@ const path = require('path');
 
 async function checkOutputFile(outputFile, errorHandler){
     try {
-        await fs.promises.access(path.join(__dirname, '../', outputFile), fs.constants.F_OK)
+        return await fs.promises.access(path.join(__dirname, '../', outputFile), fs.constants.F_OK);
     } catch(err) {
         err.isCastom = true;
         err.name = `Incorrect output file name`;
